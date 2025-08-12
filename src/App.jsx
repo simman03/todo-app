@@ -26,9 +26,27 @@ export default function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  // Dashboard summary
+  const total = todos.length;
+  const pending = todos.filter(todo => todo.status === "pending").length;
+  const done = todos.filter(todo => todo.status === "done").length;
+
   return (
     <div style={{ maxWidth: 400, margin: "2rem auto", fontFamily: "sans-serif" }}>
       <h1>Todo App</h1>
+      <div style={{
+        background: "#f1f6fa",
+        border: "1px solid #dbeafe",
+        padding: 12,
+        borderRadius: 8,
+        marginBottom: 20,
+        display: "flex",
+        justifyContent: "space-between"
+      }}>
+        <span>Total: <b>{total}</b></span>
+        <span>Pending: <b>{pending}</b></span>
+        <span>Done: <b>{done}</b></span>
+      </div>
       <form onSubmit={handleAdd} style={{ marginBottom: 16 }}>
         <input
           value={input}
