@@ -22,6 +22,10 @@ export default function App() {
     ));
   };
 
+  const handleRemove = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div style={{ maxWidth: 400, margin: "2rem auto", fontFamily: "sans-serif" }}>
       <h1>Todo App</h1>
@@ -53,9 +57,14 @@ export default function App() {
             }}
           >
             <span>{todo.text}</span>
-            <button onClick={() => toggleStatus(todo.id)}>
-              {todo.status === "pending" ? "Mark Done" : "Mark Pending"}
-            </button>
+            <div>
+              <button onClick={() => toggleStatus(todo.id)} style={{ marginRight: 8 }}>
+                {todo.status === "pending" ? "Mark Done" : "Mark Pending"}
+              </button>
+              <button onClick={() => handleRemove(todo.id)} style={{ color: "#e00" }}>
+                Remove
+              </button>
+            </div>
           </li>
         ))}
       </ul>
